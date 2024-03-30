@@ -1,0 +1,20 @@
+opam-version: "2.0"
+maintainer: "{{ cookiecutter.full_name }} <{{ cookiecutter.email }}>"
+authors: [ "{{ cookiecutter.full_name }} <{{ cookiecutter.email }}>" ]
+description: "{{ cookiecutter.description }}"
+license: "MIT"
+version: "0.1"
+homepage: "https://github.com/sheijk/{{ cookiecutter.project_slug }}"
+bug-reports: "https://github.com/sheijk/{{ cookiecutter.project_slug }}/issues"
+dev-repo: "git+https://github.com/sheijk/{{ cookiecutter.project_slug }}.git"
+build: ["dune" "build"]
+test: ["dune" "test"]
+install: ["dune" "install"]
+remove: ["dune" "uninstall"]
+depends: [
+  "ocaml" {>= "4.10.0"}
+  "ppx_deriving" {>= "4.4.1"}
+  "merlin"
+  "ocp-indent"
+  "dune"
+]

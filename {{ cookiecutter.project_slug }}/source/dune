@@ -1,0 +1,7 @@
+
+(include_subdirs unqualified)
+
+(executable
+ (name Main)
+ (public_name {{ cookiecutter.project_slug }}))
+

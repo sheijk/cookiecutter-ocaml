@@ -1,0 +1,8 @@
+{
+    "full_name": "Alice Cookie",
+    "email": "foobar@example.com",
+    "project_name": "Django Boilerplate",
+    "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_') }}",
+    "description": "No description",
+    "version": "0.1.0"
+}

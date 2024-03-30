@@ -1,0 +1,49 @@
+#+TITLE: Readme for {{ cookiecutter.project_name }}
+#+AUTHOR: {{ cookiecutter.full_name }}
+#+EMAIL: {{ cookiecutter.email }}
+
+#+STARTUP: indent
+#+STARTUP: showeverything
+
+{{ cookiecutter.description }}
+
+* Goal
+
+** TODO write
+
+* Building and development
+
+** Initial one time setup
+
+#+begin_src sh
+opam switch create . ocaml-base-compiler.4.10.0 --deps-only
+#+end_src
+
+** Build the project
+
+#+begin_src sh
+dune build
+#+end_src
+
+** Running demo app
+
+#+begin_src sh
+dune exec {{ cookiecutter.project_slug }}
+#+end_src
+
+** Build in Emacs
+
+- Open any .ml file
+- Call '(tuareg-opam-update-env)'
+- Run above build commands
+
+** Using Nix
+
+This will install all dependencies into the Nix store and compile the project
+
+#+begin_src sh
+nix build
+#+end_src
+
+Run it by calling =nix run= or =./result/bin/{{ cookiecutter.project_slug }}=
+

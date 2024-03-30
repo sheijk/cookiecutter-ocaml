@@ -1,0 +1,35 @@
+
+name: opam-build-and-test
+on: [push, pull_request]
+jobs:
+  build-and-test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - macos-latest
+          - ubuntu-latest
+          - windows-latest
+        ocaml-version:
+          - 4.13.1
+          - 4.12.1
+          - 4.11.2
+          - 4.10.2
+    runs-on: {% raw %}${{ matrix.os }}{% endraw %}
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v2
+      - name: Use OCaml {% raw %}${{ matrix.ocaml-version }}{% endraw %}
+        uses: avsm/setup-ocaml@v2
+        with:
+          ocaml-version: {% raw %}${{ matrix.ocaml-version }}{% endraw %}
+      - name: Pin package
+        run: opam pin add {{ cookiecutter.project_slug }}.dev . --no-action
+      - name: Install system dependencies
+        run: opam depext {{ cookiecutter.project_slug }} --yes
+      - name: Install dependencies
+        run: opam install . --deps-only
+      - name: Build
+        run: opam exec -- dune build
+      - name: Run tests
+        run: opam exec -- dune test
